@@ -12,6 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArchitectureRouteImport } from './routes/architecture'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppAdminRouteImport } from './routes/app.admin'
+import { Route as AppAgentsRouteImport } from './routes/app.agents'
+import { Route as AppCustomerRouteImport } from './routes/app.customer'
+import { Route as AppFraudRouteImport } from './routes/app.fraud'
+import { Route as AppMerchantRouteImport } from './routes/app.merchant'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +33,105 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppAdminRoute = AppAdminRouteImport.update({
+  id: '/app/admin',
+  path: '/app/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAgentsRoute = AppAgentsRouteImport.update({
+  id: '/app/agents',
+  path: '/app/agents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppCustomerRoute = AppCustomerRouteImport.update({
+  id: '/app/customer',
+  path: '/app/customer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppFraudRoute = AppFraudRouteImport.update({
+  id: '/app/fraud',
+  path: '/app/fraud',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppMerchantRoute = AppMerchantRouteImport.update({
+  id: '/app/merchant',
+  path: '/app/merchant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
   '/login': typeof LoginRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/agents': typeof AppAgentsRoute
+  '/app/customer': typeof AppCustomerRoute
+  '/app/fraud': typeof AppFraudRoute
+  '/app/merchant': typeof AppMerchantRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
   '/login': typeof LoginRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/agents': typeof AppAgentsRoute
+  '/app/customer': typeof AppCustomerRoute
+  '/app/fraud': typeof AppFraudRoute
+  '/app/merchant': typeof AppMerchantRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
   '/login': typeof LoginRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/agents': typeof AppAgentsRoute
+  '/app/customer': typeof AppCustomerRoute
+  '/app/fraud': typeof AppFraudRoute
+  '/app/merchant': typeof AppMerchantRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/architecture' | '/login'
+  fullPaths:
+    | '/'
+    | '/architecture'
+    | '/login'
+    | '/app/admin'
+    | '/app/agents'
+    | '/app/customer'
+    | '/app/fraud'
+    | '/app/merchant'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/architecture' | '/login'
-  id: '__root__' | '/' | '/architecture' | '/login'
+  to:
+    | '/'
+    | '/architecture'
+    | '/login'
+    | '/app/admin'
+    | '/app/agents'
+    | '/app/customer'
+    | '/app/fraud'
+    | '/app/merchant'
+  id:
+    | '__root__'
+    | '/'
+    | '/architecture'
+    | '/login'
+    | '/app/admin'
+    | '/app/agents'
+    | '/app/customer'
+    | '/app/fraud'
+    | '/app/merchant'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchitectureRoute: typeof ArchitectureRoute
   LoginRoute: typeof LoginRoute
+  AppAdminRoute: typeof AppAdminRoute
+  AppAgentsRoute: typeof AppAgentsRoute
+  AppCustomerRoute: typeof AppCustomerRoute
+  AppFraudRoute: typeof AppFraudRoute
+  AppMerchantRoute: typeof AppMerchantRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +157,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/admin': {
+      id: '/app/admin'
+      path: '/app/admin'
+      fullPath: '/app/admin'
+      preLoaderRoute: typeof AppAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/agents': {
+      id: '/app/agents'
+      path: '/app/agents'
+      fullPath: '/app/agents'
+      preLoaderRoute: typeof AppAgentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/customer': {
+      id: '/app/customer'
+      path: '/app/customer'
+      fullPath: '/app/customer'
+      preLoaderRoute: typeof AppCustomerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/fraud': {
+      id: '/app/fraud'
+      path: '/app/fraud'
+      fullPath: '/app/fraud'
+      preLoaderRoute: typeof AppFraudRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/merchant': {
+      id: '/app/merchant'
+      path: '/app/merchant'
+      fullPath: '/app/merchant'
+      preLoaderRoute: typeof AppMerchantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +199,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchitectureRoute: ArchitectureRoute,
   LoginRoute: LoginRoute,
+  AppAdminRoute: AppAdminRoute,
+  AppAgentsRoute: AppAgentsRoute,
+  AppCustomerRoute: AppCustomerRoute,
+  AppFraudRoute: AppFraudRoute,
+  AppMerchantRoute: AppMerchantRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
